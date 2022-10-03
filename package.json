@@ -1,0 +1,37 @@
+{
+  "name": "easy-version",
+  "version": "1.0.0",
+  "description": "Middleware for API Versioning using content negotiation and media types",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rcsolis/easy-version.git"
+  },
+  "keywords": [
+    "API",
+    "Version",
+    "versioning",
+    "Express",
+    "API",
+    "REST",
+    "version",
+    "control",
+    "version",
+    "media",
+    "type",
+    "content",
+    "negotiation"
+  ],
+  "author": "Rafael Chavez Solis <rafaelchavezsolis@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rcsolis/easy-version/issues"
+  },
+  "homepage": "https://github.com/rcsolis/easy-version#readme",
+  "devDependencies": {
+    "jest": "^29.1.2"
+  }
+}
