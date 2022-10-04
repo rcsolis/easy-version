@@ -5,13 +5,22 @@
     "main": "index.js",
     "type": "module",
     "scripts": {
-        "lint": "eslint --fix",
+        "lint": "eslint src --fix",
         "coverage": "jest src/ --coverage",
         "test": "echo \"Testing\" && jest src/",
+        "start": "node src",
         "build": "babel src/index.js -d dist",
         "semantic-release": "semantic-release --branches main",
         "commit": "git-cz"
     },
+    "files": [
+        "dist",
+        "src",
+        "LICENSE",
+        "README.md",
+        ".eslinrc",
+        ".babelrc"
+    ],
     "repository": {
         "type": "git",
         "url": "https://github.com/rcsolis/easy-version.git"
@@ -41,9 +50,6 @@
         "@babel/cli": "^7.19.3",
         "@babel/core": "^7.19.3",
         "@babel/preset-env": "^7.19.3",
-        "@semantic-release/changelog": "^6.0.1",
-        "@semantic-release/git": "^10.0.1",
-        "babel-preset-minify": "^0.5.2",
         "cz-conventional-changelog": "^3.3.0",
         "eslint": "^8.24.0",
         "eslint-config-prettier": "^8.5.0",
@@ -58,51 +64,5 @@
         "commitizen": {
             "path": "./node_modules/cz-conventional-changelog"
         }
-    },
-    "release": {
-        "plugins": [
-            "@semantic-release/commit-analyzer",
-            "@semantic-release/release-notes-generator",
-            [
-                "@semantic-release/changelog",
-                {
-                    "changelogFile": "CHANGELOG.md",
-                    "changelogTitle": "# Easy-Version Changelog"
-                }
-            ],
-            [
-                "@semantic-release/git",
-                {
-                    "assets": [
-                        "dist/**/*.{js,css}",
-                        "CHANGELOG.md",
-                        "README.md",
-                        "LICENSE",
-                        "package.json"
-                    ]
-                }
-            ],
-            [
-                "@semantic-release/github",
-                {
-                    "assets": [
-                        {
-                            "path": "dist/**/*.{js,css}",
-                            "label": "Distribution files"
-                        },
-                        "CHANGELOG.md",
-                        "README.md",
-                        "LICENSE",
-                        "package.json"
-                    ]
-                }
-            ],
-            [
-                "@semantic-release/npm",
-                {
-                    "pkgRoot": "./dist/"
-                }
-            ]
-        ]
     }
 }
