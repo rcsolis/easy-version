@@ -18,7 +18,9 @@ The recommended format for the media type is:
 ```
 application/<prefix>.<service-name>+json;version=<version>
 ``` 
-- Its strongly suggest *version* is a semantic versioning (https://semver.org/).
+- Its strongly suggest that specify the *version* value using semantic versioning (https://semver.org/).
+- The *prefix* value is optional, but is recommended to use the prefix to avoid conflicts with other media types. E.g. *ms* for Microservice, *wm* for web-middleware, etc.
+- The *service-name* value is the name of the service (API) that is being versioned.
 
 ## References
 
