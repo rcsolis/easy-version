@@ -41,6 +41,7 @@
         "@babel/cli": "^7.19.3",
         "@babel/core": "^7.19.3",
         "@babel/preset-env": "^7.19.3",
+        "@semantic-release/changelog": "^6.0.1",
         "@semantic-release/git": "^10.0.1",
         "babel-preset-minify": "^0.5.2",
         "cz-conventional-changelog": "^3.3.0",
@@ -63,16 +64,39 @@
             "@semantic-release/commit-analyzer",
             "@semantic-release/release-notes-generator",
             [
+                "@semantic-release/changelog",
+                {
+                    "changelogFile": "CHANGELOG.md",
+                    "changelogTitle": "# Easy-Version Changelog"
+                }
+            ],
+            [
                 "@semantic-release/git",
                 {
                     "assets": [
                         "dist/**/*.{js,css}",
-                        "docs",
+                        "CHANGELOG.md",
+                        "README.md",
+                        "LICENSE",
                         "package.json"
                     ]
                 }
             ],
-            "@semantic-release/github",
+            [
+                "@semantic-release/github",
+                {
+                    "assets": [
+                        {
+                            "path": "dist/**/*.{js,css}",
+                            "label": "Distribution files"
+                        },
+                        "CHANGELOG.md",
+                        "README.md",
+                        "LICENSE",
+                        "package.json"
+                    ]
+                }
+            ],
             [
                 "@semantic-release/npm",
                 {
