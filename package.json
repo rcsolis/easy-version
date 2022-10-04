@@ -1,14 +1,19 @@
 {
   "name": "easy-version",
-  "version": "1.0.0",
+  "version": "0.0.0-development",
   "description": "Middleware for API Versioning using content negotiation and media types",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "eslint src",
+    "coverage": "jest src/ --coverage",
+    "test": "echo \"Testing\" && jest src/",
+    "build": "babel src/index.js -d dist",
+    "semantic-release": "semantic-release --branches main"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/rcsolis/easy-version.git"
+    "url": "https://github.com/rcsolis/easy-version.git"
   },
   "keywords": [
     "API",
@@ -32,6 +37,17 @@
   },
   "homepage": "https://github.com/rcsolis/easy-version#readme",
   "devDependencies": {
-    "jest": "^29.1.2"
+    "@babel/cli": "^7.19.3",
+    "@babel/core": "^7.19.3",
+    "@babel/preset-env": "^7.19.3",
+    "babel-preset-minify": "^0.5.2",
+    "eslint": "^8.24.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-n": "^15.3.0",
+    "eslint-plugin-promise": "^6.0.1",
+    "jest": "^29.1.2",
+    "semantic-release": "^19.0.5"
   }
 }
