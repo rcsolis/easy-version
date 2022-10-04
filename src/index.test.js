@@ -1,18 +1,18 @@
+/* eslint-disable no-undef */
 import { registerVersion, routeTo } from './index';
-import { describe, beforeEach, expect, fn, test } from 'jest';
 
 // Suite for testing regiterVersion function
 describe('Testing API Versioning Middleware - Register Version', () => {
     let mockRequest = {};
     let mockResponse = {};
-    const mockNext = fn((res) => res);
+    const mockNext = jest.fn((res) => res);
     beforeEach(() => {
         mockRequest = {
             headers: [],
         };
         mockResponse = {
             headers: [],
-            setHeader: fn((header, value) => {
+            setHeader: jest.fn((header, value) => {
                 mockResponse.headers[header] = value;
             }),
         };
@@ -55,14 +55,14 @@ describe('Testing API Versioning Middleware - Register Version', () => {
 describe('Testing API Versioning Middleware - RouteTo', () => {
     let mockRequest = {};
     let mockResponse = {};
-    const mockNext = fn((res) => res);
+    const mockNext = jest.fn((res) => res);
     beforeEach(() => {
         mockRequest = {
             headers: [],
         };
         mockResponse = {
             headers: [],
-            setHeader: fn((header, value) => {
+            setHeader: jest.fn((header, value) => {
                 mockResponse.headers[header] = value;
             }),
         };
@@ -84,8 +84,8 @@ describe('Testing API Versioning Middleware - RouteTo', () => {
     });
     test('Should routeTo completes and call the handler2', () => {
         mockRequest.version = '2.0.0';
-        const handler1 = fn(() => console.log('handler1'));
-        const handler2 = fn(() => console.log('handler2'));
+        const handler1 = jest.fn(() => console.log('handler1'));
+        const handler2 = jest.fn(() => console.log('handler2'));
         const defaultHandler = undefined;
         const mockHandlers = {
             '1.0.0': handler1,
@@ -98,8 +98,8 @@ describe('Testing API Versioning Middleware - RouteTo', () => {
     });
     test('Should routeTo completes and call the handler1', () => {
         mockRequest.version = '1.0.0';
-        const handler1 = fn(() => console.log('handler1'));
-        const handler2 = fn(() => console.log('handler2'));
+        const handler1 = jest.fn(() => console.log('handler1'));
+        const handler2 = jest.fn(() => console.log('handler2'));
         const defaultHandler = undefined;
         const mockHandlers = {
             '1.0.0': handler1,
@@ -112,8 +112,8 @@ describe('Testing API Versioning Middleware - RouteTo', () => {
     });
     test('Should routeTo fails with an error for missing default handler', () => {
         mockRequest.version = '3.0.0';
-        const handler1 = fn(() => console.log('handler1'));
-        const handler2 = fn(() => console.log('handler2'));
+        const handler1 = jest.fn(() => console.log('handler1'));
+        const handler2 = jest.fn(() => console.log('handler2'));
         const defaultHandler = undefined;
         const mockHandlers = {
             '1.0.0': handler1,
@@ -125,9 +125,9 @@ describe('Testing API Versioning Middleware - RouteTo', () => {
     });
     test('Should routeTo completes and call the default handler', () => {
         mockRequest.version = '3.0.0';
-        const handler1 = fn(() => console.log('handler1'));
-        const handler2 = fn(() => console.log('handler2'));
-        const defaultHandler = fn(() => console.log('default handler'));
+        const handler1 = jest.fn(() => console.log('handler1'));
+        const handler2 = jest.fn(() => console.log('handler2'));
+        const defaultHandler = jest.fn(() => console.log('default handler'));
         const mockHandlers = {
             '1.0.0': handler1,
             '2.0.0': handler2,
