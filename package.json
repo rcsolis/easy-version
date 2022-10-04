@@ -67,12 +67,28 @@
                 {
                     "assets": [
                         "dist/**/*.{js,css}",
-                        "docs",
+                        "CHANGELOG.md",
+                        "README.md",
+                        "LICENSE",
                         "package.json"
                     ]
                 }
             ],
-            "@semantic-release/github",
+            [
+                "@semantic-release/github",
+                {
+                    "assets": [
+                        {
+                            "path": "dist/**/*.{js,css}",
+                            "label": "Distribution files"
+                        },
+                        "CHANGELOG.md",
+                        "README.md",
+                        "LICENSE",
+                        "package.json"
+                    ]
+                }
+            ],
             [
                 "@semantic-release/npm",
                 {
