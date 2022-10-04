@@ -5,7 +5,7 @@
     "main": "index.js",
     "type": "module",
     "scripts": {
-        "lint": "eslint './src/**/*' -c .eslintrc --fix",
+        "lint": "eslint --fix",
         "coverage": "jest src/ --coverage",
         "test": "echo \"Testing\" && jest src/",
         "build": "babel src/index.js -d dist",
