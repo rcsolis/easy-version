@@ -5,7 +5,7 @@
     "main": "index.js",
     "type": "module",
     "scripts": {
-        "lint": "eslint src",
+        "lint": "eslint './src/**/*' -c .eslintrc --fix",
         "coverage": "jest src/ --coverage",
         "test": "echo \"Testing\" && jest src/",
         "build": "babel src/index.js -d dist",
@@ -56,5 +56,28 @@
         "commitizen": {
             "path": "./node_modules/cz-conventional-changelog"
         }
+    },
+    "release": {
+        "plugins": [
+            "@semantic-release/commit-analyzer",
+            "@semantic-release/release-notes-generator",
+            [
+                "@semantic-release/git",
+                {
+                    "assets": [
+                        "dist/**/*.{js,css}",
+                        "docs",
+                        "package.json"
+                    ]
+                }
+            ],
+            "@semantic-release/github",
+            [
+                "@semantic-release/npm",
+                {
+                    "pkgRoot": "./dist/"
+                }
+            ]
+        ]
     }
 }
