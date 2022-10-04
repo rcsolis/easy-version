@@ -5,7 +5,7 @@
     "main": "index.js",
     "type": "module",
     "scripts": {
-        "lint": "eslint src",
+        "lint": "eslint --fix",
         "coverage": "jest src/ --coverage",
         "test": "echo \"Testing\" && jest src/",
         "build": "babel src/index.js -d dist",
@@ -41,6 +41,7 @@
         "@babel/cli": "^7.19.3",
         "@babel/core": "^7.19.3",
         "@babel/preset-env": "^7.19.3",
+        "@semantic-release/git": "^10.0.1",
         "babel-preset-minify": "^0.5.2",
         "cz-conventional-changelog": "^3.3.0",
         "eslint": "^8.24.0",
@@ -56,5 +57,28 @@
         "commitizen": {
             "path": "./node_modules/cz-conventional-changelog"
         }
+    },
+    "release": {
+        "plugins": [
+            "@semantic-release/commit-analyzer",
+            "@semantic-release/release-notes-generator",
+            [
+                "@semantic-release/git",
+                {
+                    "assets": [
+                        "dist/**/*.{js,css}",
+                        "docs",
+                        "package.json"
+                    ]
+                }
+            ],
+            "@semantic-release/github",
+            [
+                "@semantic-release/npm",
+                {
+                    "pkgRoot": "./dist/"
+                }
+            ]
+        ]
     }
 }
