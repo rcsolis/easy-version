@@ -53,7 +53,6 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
-          registry-url: https://registry.npmjs.org/
       - run: npm ci
       - name: Release package
         run: npm run semantic-release
