@@ -4,11 +4,11 @@
 name: Publish Package
 
 on:
-  pull_request:
-    types:
-    - closed
-    branches: 
-    - main
+#  pull_request:
+#    types:
+#    - closed
+#    branches: 
+#    - main
   push:
     branches:
       - main
@@ -44,7 +44,7 @@ jobs:
         run: npm test
 
   publish-npm:
-    if: github.event.pull_request.merged == true
+    #if: github.event.pull_request.merged == true
     needs: build
     runs-on: ubuntu-latest
     steps:
