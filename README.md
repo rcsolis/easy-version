@@ -31,6 +31,10 @@ application/<prefix>.<service-name>+json;version=<version>
 - NodeJs v16.15.1
 - NPM v8.11.0
 
+## Last Update
+
+- 2022-10-05 Change the *RouteTo* function to be the last middleware in the stack.
+
 ## Get Started
 
 For use this package, first install as dependency 
@@ -84,6 +88,8 @@ Function to parse the Accept header value for get the version requested and regi
  > **@param {*object*} args** (Required) Map with the version number and its handler
 
  > **@param {*function*} notVersionFound** (Optional) Default callback for executes if no version found
+
+**Note:** This function is responsible for call the request handlers, so its necessary that the handlers are registered before this function and ***returns a response***. No middleware can be registered after this function.
 
 ### Request.version
 Injects the version detected into the *version* attribute of the standard request object. So its available to read in all the requests.
