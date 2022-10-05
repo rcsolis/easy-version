@@ -142,44 +142,43 @@ function registerVersion(customFunction) {
  * @param {function} notVersionFound Default callback for executes if no version found
  */
 function routeTo(args, notVersionFound) {
-    return function (req, res, next) {
-        // If no exits the accept header
-        if (!req || !req.version || typeof req.version !== 'string') {
-            res.statusCode = 403;
-            next(new Error(errors.missingVersion));
-            return;
-        }
-        // If not received a map for routing
-        if (!args || typeof args !== 'object' || Array.isArray(args)) {
-            res.statusCode = 403;
-            next(new Error(errors.invalidRoutes));
-            return;
-        }
-        // Gets map and execute the handler
-        const versions = Object.keys(args);
-        const rv = String(req.version);
-        let v;
-        for (let version of versions) {
-            version = String(version);
-            if (version.toLowerCase().trim() === rv.toLowerCase().trim()) {
-                v = version;
-                break;
-            }
-        }
-        // If not version found
-        if (v === undefined) {
-            // Executes callback if no version its found
-            if (!notVersionFound) {
+    return async function (req, res, next) {
+        try {
+            // If no exits the accept header
+            if (!req || !req.version || typeof req.version !== 'string') {
                 res.statusCode = 403;
-                next(new Error(errors.handlerError));
-                return;
+                throw new Error(errors.missingVersion);
             }
-            notVersionFound.call(this, req, res, next);
-        } else {
-            args[v].call(this, req, res, next);
+            // If not received a map for routing
+            if (!args || typeof args !== 'object' || Array.isArray(args)) {
+                res.statusCode = 403;
+                throw new Error(errors.invalidRoutes);
+            }
+            // Gets map and execute the handler
+            const versions = Object.keys(args);
+            const rv = String(req.version);
+            let v;
+            for (let version of versions) {
+                version = String(version);
+                if (version.toLowerCase().trim() === rv.toLowerCase().trim()) {
+                    v = version;
+                    break;
+                }
+            }
+            // If not version found
+            if (v === undefined) {
+                // Executes callback if no version its found
+                if (!notVersionFound) {
+                    res.statusCode = 403;
+                    throw new Error(errors.handlerError);
+                }
+                await notVersionFound.call(this, req, res, next);
+            } else {
+                await args[v].call(this, req, res, next);
+            }
+        } catch (err) {
+            next(err);
         }
-        // Move to next middleware
-        next();
     };
 }
 /**

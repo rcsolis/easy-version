@@ -40,14 +40,14 @@ describe('Testing API Versioning Middleware - Register Version', () => {
         mockRequest.headers.accept = 'application/x.my-microservice-name+json;version=1.0.0';
         const rv = registerVersion(undefined);
         rv(mockRequest, mockResponse, mockNext);
-        expect(mockNext).toHaveBeenCalledWith();
+        expect(mockNext).toHaveBeenCalled();
         expect(mockRequest.version).toBe('1.0.0');
     });
     test('Register Version Success, optional field name', () => {
         mockRequest.headers.accept = 'application/x.my-microservice-name+json;v=1.0.0';
         const rv = registerVersion(undefined);
         rv(mockRequest, mockResponse, mockNext);
-        expect(mockNext).toHaveBeenCalledWith();
+        expect(mockNext).toHaveBeenCalled();
         expect(mockRequest.version).toBe('1.0.0');
     });
 });
@@ -108,7 +108,7 @@ describe('Testing API Versioning Middleware - RouteTo', () => {
         const route = routeTo(mockHandlers, defaultHandler);
         route(mockRequest, mockResponse, mockNext);
         expect(handler1).toHaveBeenCalledWith(mockRequest, mockResponse, mockNext);
-        expect(mockNext).toHaveBeenCalledWith();
+        expect(mockNext).toHaveBeenCalled();
     });
     test('Should routeTo fails with an error for missing default handler', () => {
         mockRequest.version = '3.0.0';
