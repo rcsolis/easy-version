@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-import { registerVersion, routeTo } from './index';
+import { registerVersion, routeTo } from '../src/index';
 
 // Suite for testing regiterVersion function
 describe('Testing API Versioning Middleware - Register Version', () => {

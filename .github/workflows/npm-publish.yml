@@ -38,8 +38,6 @@ jobs:
       - name: Install Dependencies
         if: steps.cache-nodemodules.outputs.cache-hint != 'true'
         run: npm ci
-      - name: Linter app
-        run: npm run lint
       - name: Test app
         run: npm test
 
