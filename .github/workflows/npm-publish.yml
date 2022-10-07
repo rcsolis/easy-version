@@ -39,7 +39,7 @@ jobs:
         if: steps.cache-nodemodules.outputs.cache-hint != 'true'
         run: npm ci
       - name: Test app
-        run: npm test
+        run: npm run test
 
   publish-npm:
     #if: github.event.pull_request.merged == true
